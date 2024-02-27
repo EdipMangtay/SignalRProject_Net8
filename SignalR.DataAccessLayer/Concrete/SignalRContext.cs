@@ -14,7 +14,9 @@ namespace SignalR.DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server =MANGTAY\\SQLDERS; initial Catalog = SignalRDb; integrated Security = true");
+            optionsBuilder.UseSqlServer("Server = MANGTAY\\SQLDERS; initial Catalog = SignalRDb; Encrypt = false; integrated Security = true");
+
+
 
 
         }
