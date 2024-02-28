@@ -31,11 +31,7 @@ namespace SignalR.BusinessLayer.Concrete
 
         }
 
-        public Testimonial TGetByID(int id)
-        {
-            _testimonialDal.GetByID(id);
-
-        }
+        public Testimonial TGetByID(int id) => _testimonialDal.GetByID(id);
 
         public List<Testimonial> TGetListAll()
         {
