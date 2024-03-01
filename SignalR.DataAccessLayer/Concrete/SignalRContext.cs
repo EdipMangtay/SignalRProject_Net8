@@ -16,9 +16,6 @@ namespace SignalR.DataAccessLayer.Concrete
         {
             optionsBuilder.UseSqlServer("Server = MANGTAY\\SQLDERS; initial Catalog = SignalRDb; Encrypt = false; integrated Security = true");
 
-
-
-
         }
         public DbSet<About> Abouts { get; set; }
         public DbSet<Booking> Bookings { get; set; }

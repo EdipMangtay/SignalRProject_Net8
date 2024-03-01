@@ -20,15 +20,13 @@ namespace SignalRApi.Controllers
         [HttpGet] // listeleme için 
         public IActionResult AboutList()
         {
-            var values = _aboutService.TGetListAll();
+            var values = _aboutService.TGetListAll(); 
             return Ok(values);
-
-
         }
         [HttpPost]
         public IActionResult CreateAbout(CreateAboutDto createAboutDto)
         {
-            About About = new About()
+            About About = new About() // mapping yapabilmem için eklenen about kısmı 
             {
                 Title = createAboutDto.Title,
                 Description = createAboutDto.Description,
