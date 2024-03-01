@@ -39,5 +39,37 @@ namespace SignalRApi.Controllers
             _bookingService.TAdd(booking);
             return Ok("RezervasyonYapıldı");
         }
+        [HttpDelete]
+        public IActionResult DeleteBooking(int id)
+        {
+            var value = _bookingService.TGetByID(id);
+            _bookingService.TDelete(value);
+            return Ok("Rezervasyon Silindi");
+
+        }
+        [HttpPut]
+        public IActionResult Updatebooking(UpdateBookingDto updateBookingDto)
+        {
+            EntityLayer.Entities.Booking booking = new EntityLayer.Entities.Booking()
+            {
+                Mail = updateBookingDto.Mail,
+                BookingID = updateBookingDto.BookingID,
+                Phone = updateBookingDto.Phone,
+                PersonCount = updateBookingDto.PersonCount,
+                Date = updateBookingDto.Date,
+                Name = updateBookingDto.Name
+
+            };
+            _bookingService.TUpdate(booking);
+            return Ok("Güncelleme işlemi yapıldı");
+        }
+        [HttpGet("Getbooking")]
+        public IActionResult Getbooking(int id)
+        {
+            var value = _bookingService.TGetByID(id);
+            return Ok(value);
+
+        }
+
     }
 }

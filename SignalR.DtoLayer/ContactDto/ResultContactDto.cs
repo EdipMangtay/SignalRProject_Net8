@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SignalR.DtoLayer.ContactDto
 {
-    public class ResultCategoryDto
+    public class ResultContactDto
     {
         public int ContactID { get; set; }
         public string Location { get; set; }
