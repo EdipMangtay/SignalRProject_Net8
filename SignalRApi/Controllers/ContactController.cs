@@ -40,7 +40,8 @@ namespace SignalRApi.Controllers
                 Location = createContactDto.Location,
                 Phone = createContactDto.Phone,
                 FooterDescription = createContactDto.FooterDescription,
-                Mail = createContactDto.Mail
+                Mail = createContactDto.Mail,
+                Phone = createContactDto.Phone
             });
             return Ok("Kategori Eklendi");
 
