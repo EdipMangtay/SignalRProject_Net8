@@ -41,7 +41,7 @@ namespace SignalRApi.Controllers
                 Location = createContactDto.Location,
                 FooterDescription = createContactDto.FooterDescription,
                 Mail = createContactDto.Mail,
-                Phone = createContactDto.Phone
+                Phone = createContactDto.Phone.ToString()
 
             }); ;
            
@@ -74,7 +74,7 @@ namespace SignalRApi.Controllers
             {
                 ContactID = updateContactDto.ContactID,
                 Location = updateContactDto.Location,
-                Phone = updateContactDto.Phone,
+                Phone = updateContactDto.Phone.ToString(),
                 Mail = updateContactDto.Mail,
                 FooterDescription = updateContactDto.FooterDescription
             });
