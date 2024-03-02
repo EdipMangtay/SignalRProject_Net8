@@ -1,4 +1,6 @@
-﻿namespace SignalR.EntityLayer.Entities
+﻿using System.Text;
+
+namespace SignalR.EntityLayer.Entities
 {
     public class Testimonial
     {
@@ -7,7 +9,7 @@
         public string Title { get; set; }
         public string Comment { get; set; }
         public string ImgUrl { get; set; }
-        public bool Status { get; set; }
+        public string Status { get; set; }
 
 
     }

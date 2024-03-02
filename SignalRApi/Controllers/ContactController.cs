@@ -41,13 +41,13 @@ namespace SignalRApi.Controllers
                 Location = createContactDto.Location,
                 FooterDescription = createContactDto.FooterDescription,
                 Mail = createContactDto.Mail,
-                Phone = createContactDto.Phone.ToString()
+                Phone = createContactDto.Phone
 
             }); ;
            
             return Ok("Kategori Eklendi");
 
-
+            
         }
 
         [HttpDelete]
