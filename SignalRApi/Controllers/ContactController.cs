@@ -6,6 +6,7 @@ using SignalR.BusinnesLayer.Abstract;
 using SignalR.DtoLayer.CategoryDto;
 using SignalR.DtoLayer.ContactDto;
 using SignalR.EntityLayer.Entities;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 
 namespace SignalRApi.Controllers
@@ -38,11 +39,12 @@ namespace SignalRApi.Controllers
             _contactService.TAdd(new Contact()
             {
                 Location = createContactDto.Location,
-                Phone = createContactDto.Phone,
                 FooterDescription = createContactDto.FooterDescription,
                 Mail = createContactDto.Mail,
                 Phone = createContactDto.Phone
-            });
+
+            }); ;
+           
             return Ok("Kategori Eklendi");
 
 
