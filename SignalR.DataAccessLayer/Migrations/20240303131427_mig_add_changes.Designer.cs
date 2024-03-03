@@ -12,8 +12,8 @@ using SignalR.DataAccessLayer.Concrete;
 namespace SignalR.DataAccessLayer.Migrations
 {
     [DbContext(typeof(SignalRContext))]
-    [Migration("20240303124821_mig_add_relation_product_category1")]
-    partial class mig_add_relation_product_category1
+    [Migration("20240303131427_mig_add_changes")]
+    partial class mig_add_changes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
