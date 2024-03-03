@@ -33,7 +33,7 @@ namespace SignalRApi.Controllers
             _categoryService.TAdd(new EntityLayer.Entities.Category()
             {
                 CategoryName = createCategoryDto.CategoryName,
-                Status = "true"
+                Status = true
             }) ;
             return Ok("Kategori Eklendi");
 
