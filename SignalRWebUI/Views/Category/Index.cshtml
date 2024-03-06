@@ -3,7 +3,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
-
 <h1>Index</h1>
 
 <div class="content">
@@ -34,15 +33,13 @@
 								@foreach (var item in Model)
 								{
 									<tr>
-										<td>@item.Categoryid != null ? item.Categoryid.ToString() : "N/A")</td>
-										<td>@item.CategoryName ?? "N/A")</td>
-										<td>@item.Status ?? "N/A")</td>
+										<td>@item.Categoryid</td>
+										<td>@item.CategoryName</td>
+										<td>@item.Status</td>
 										<td><a href="#" class="btn btn-outline-danger">Sil</a></td>
 										<td><a href="#" class="btn btn-outline-success">Güncelle</a></td>
 									</tr>
 								}
-
-
 								
 				
 							</tbody>
