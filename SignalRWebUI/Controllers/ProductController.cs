@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using SignalRWebUI.ViewModels.Dtos.CategoryDtos;
 using SignalRWebUI.ViewModels.Dtos.ProductDtos;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -26,15 +28,49 @@ namespace SignalRWebUI.Controllers
 
             }
             return View();
-
+            
             
         }
         [HttpGet]
-        public IActionResult CreateProduct()
+        public async Task <IActionResult> CreateProduct()
         {
-            return View();
+            try
+            {
+                var client = _httpClientFactory.CreateClient();
+                HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7200/Category");
 
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+
+                    List<SelectListItem> values2 = (from x in values
+                                                    select new SelectListItem
+                                                    {
+                                                        Text = x.CategoryName,
+                                                        Value = x.Categoryid.ToString()
+                                                    }).ToList();
+                    ViewBag.v = values2;
+                }
+                else
+                {
+                    // Handle the case when the API call is not successful
+                    // For example, you can set a default value for ViewBag.v or log the error
+                    ViewBag.v = new List<SelectListItem>();
+                    // Log the error or handle it accordingly
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that may occur during the process
+                // For example, you can log the exception or return an error view
+                ViewBag.v = new List<SelectListItem>();
+                // Log the exception or handle it accordingly
+            }
+
+            return View();
         }
+        //[HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
             createProductDto.ProductStatus = true;
