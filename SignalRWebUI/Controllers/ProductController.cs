@@ -37,7 +37,7 @@ namespace SignalRWebUI.Controllers
             try
             {
                 var client = _httpClientFactory.CreateClient();
-                var responseMessage = await client.GetAsync("https://localhost:7272/api/Category");
+                var responseMessage = await client.GetAsync("https://localhost:7272/api/Category/Get_list");
                 responseMessage.EnsureSuccessStatusCode(); // HTTP 200 başarı kodunu kontrol et
 
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
