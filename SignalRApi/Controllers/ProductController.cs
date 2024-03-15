@@ -57,9 +57,10 @@ namespace SignalRApi.Controllers
                 Description = createProductDto.Description,
                 Price = createProductDto.Price,
                 ImageUrl = createProductDto.ImageUrl,
-                ProductStatus = createProductDto.ProductStatus
+                ProductStatus = createProductDto.ProductStatus,
+                CategoryID = createProductDto.CategoryID
 
-            });
+            }) ;
             return Ok("Product Eklendi");
 
         }

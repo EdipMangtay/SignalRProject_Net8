@@ -37,40 +37,39 @@ namespace SignalRWebUI.Controllers
             try
             {
                 var client = _httpClientFactory.CreateClient();
-                HttpResponseMessage responseMessage = await client.GetAsync("https://localhost:7200/Category");
+                var responseMessage = await client.GetAsync("https://localhost:7272/api/Category");
+                responseMessage.EnsureSuccessStatusCode(); // HTTP 200 başarı kodunu kontrol et
 
-                if (responseMessage.IsSuccessStatusCode)
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+
+                if (values != null)
                 {
-                    var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                    var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+                    List<SelectListItem> values2 = values.Select(x => new SelectListItem
+                    {
+                        Text = x.CategoryName,
+                        Value = x.Categoryid.ToString()
+                    }).ToList();
 
-                    List<SelectListItem> values2 = (from x in values
-                                                    select new SelectListItem
-                                                    {
-                                                        Text = x.CategoryName,
-                                                        Value = x.Categoryid.ToString()
-                                                    }).ToList();
                     ViewBag.v = values2;
+                    return View();
                 }
                 else
                 {
-                    // Handle the case when the API call is not successful
-                    // For example, you can set a default value for ViewBag.v or log the error
-                    ViewBag.v = new List<SelectListItem>();
-                    // Log the error or handle it accordingly
+                    // values null ise veya boşsa, bu durumu ele alın
+                    // Bir hata mesajı gösterebilir veya varsayılan bir değer atayabilirsiniz
+                    return View();
                 }
             }
-            catch (Exception ex)
+            catch (HttpRequestException ex)
             {
-                // Handle any exceptions that may occur during the process
-                // For example, you can log the exception or return an error view
-                ViewBag.v = new List<SelectListItem>();
-                // Log the exception or handle it accordingly
+                // HttpClient tarafından fırlatılan istisnaları ele alın
+                // Hata durumunu loglayabilir veya kullanıcıya uygun bir hata mesajı gösterebilirsiniz
+                // Örnek: Loglama veya return BadRequest("Bir hata oluştu");
+                return BadRequest("Bir hata oluştu");
             }
-
-            return View();
         }
-        //[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
             createProductDto.ProductStatus = true;
