@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using SignalR.BusinnesLayer.Abstract;
-using SignalR.DtoLayer.CategoryDto;
 using SignalR.DtoLayer.ContactDto;
 using SignalR.EntityLayer.Entities;
 using System.Numerics;
@@ -43,14 +42,14 @@ namespace SignalRApi.Controllers
                 Mail = createContactDto.Mail,
                 Phone = createContactDto.Phone
 
-            }); ;
+            }); 
            
-            return Ok("Kategori Eklendi");
+            return Ok("Contact Eklendi");
 
             
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id)
         {
             var values = _contactService.TGetByID(id);
@@ -59,7 +58,7 @@ namespace SignalRApi.Controllers
 
         }
 
-        [HttpGet("GetContact")]
+        [HttpGet("{id}")]
         public IActionResult GetContact(int id)
         {
             var values = _contactService.TGetByID(id);

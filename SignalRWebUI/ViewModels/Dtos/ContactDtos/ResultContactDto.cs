@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalR.DtoLayer.ContactDto
+namespace SignalRWebUI.ViewModels.Dtos.ContactDtos
 {
     public class ResultContactDto
     {
