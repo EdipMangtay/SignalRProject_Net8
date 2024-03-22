@@ -46,16 +46,16 @@ namespace SignalRApi.Controllers
 
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteSocialMedia(int id)
         {
             var values = _socialMediaService.TGetByID(id);
             _socialMediaService.TDelete(values);
-            return Ok("Contact silindi");
+            return Ok("Social Media silindi");
 
         }
 
-        [HttpGet("GetSocialMedia")]
+        [HttpGet("{id}")]
         public IActionResult GetSocialMedia (int id)
         {
             var values = _socialMediaService.TGetByID(id);
