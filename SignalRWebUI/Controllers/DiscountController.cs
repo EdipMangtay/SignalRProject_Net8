@@ -63,7 +63,7 @@ namespace SignalRWebUI.Controllers
         public async Task<IActionResult> UpdateDiscount(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7272/api/Category/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7272/api/Discount/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

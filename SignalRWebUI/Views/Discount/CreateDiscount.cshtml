@@ -1,6 +1,6 @@
 ﻿@model CreateDiscountDto
 @{
-	ViewData["Title"] = "CreateCategory";
+	ViewData["Title"] = "CreateDiscount";
 	Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
@@ -16,26 +16,25 @@
 						</div>
 						<div class="card-body">
 							<div class="form-group">
-								<label for="categoryname"> Ürün Adını Giriniz</label>
-								<input type="text" class="form-control" asp-for="Title" id="CategoryName" placeholder="Kategori Adı">
+								<label for="Title"> Ürün Adını Giriniz</label>
+								<input type="text" class="form-control" asp-for="Title" id="Title" />							</div>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<label for="Amount"> Ürün İnidrim Oranını Giriniz</label>
+								<input type="text" class="form-control" asp-for="Amount" id="Amount" />
 							</div>
 						</div>
 						<div class="card-body">
 							<div class="form-group">
-								<label for="categoryname"> Ürün Adını Giriniz</label>
-								<input type="text" class="form-control" asp-for="CategoryName" id="CategoryName" placeholder="Kategori Adı">
+								<label for="ImageUrl"> Ürün GÖrselini Giriniz</label>
+								<input type="text" class="form-control" asp-for="ImageUrl" id="ImageUrl" />
 							</div>
 						</div>
 						<div class="card-body">
 							<div class="form-group">
-								<label for="categoryname"> Ürün Adını Giriniz</label>
-								<input type="text" class="form-control" asp-for="CategoryName" id="CategoryName" placeholder="Kategori Adı">
-							</div>
-						</div>
-						<div class="card-body">
-							<div class="form-group">
-								<label for="categoryname"> Ürün Adını Giriniz</label>
-								<input type="text" class="form-control" asp-for="CategoryName" id="CategoryName" placeholder="Kategori Adı">
+								<label for="Description"> Ürün Açıklamasını Giriniz</label>
+								<input type="text" class="form-control" asp-for="Description" id="Description" />
 							</div>
 						</div>
 						<div class="card-action">
@@ -44,7 +43,6 @@
 					</div>
 				</form>
 			</div>
-			<a href=" /Category/CreateCategory" class="btn btn-outline-primary">Yeni Kategori Girişi </a>
 		</div>
 	</div>
 </div>
