@@ -1,0 +1,69 @@
+﻿@{
+    // Sayfa başlığını belirliyoruz
+    ViewData["Title"] = "Index2";
+    // Kullanılacak layout'u belirliyoruz
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<!-- Başlık -->
+<h1>Ana Sayfa</h1>
+
+<!-- Gerekli JavaScript kütüphanelerini ekliyoruz -->
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery ekledik -->
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<!-- İçerik -->
+<div class="content">
+    <div class="row">
+        <!-- Kapsayıcı div -->
+        <div class="col-md-12">
+            <!-- Kart -->
+            <div class="card">
+                <!-- JavaScript kodları -->
+                <script type="text/javascript">
+                    $(document).ready(function () {
+
+                        // SignalR bağlantısı oluşturuyoruz
+                        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7272/SignalRHub").build();
+                        // Bağlantı durumunu gösteren elementi güncelliyoruz
+                        $("#connstatus").text(connection.state);
+
+                        // Bağlantıyı başlatıyoruz
+                        connection.start().then(() => {
+                            // Bağlantı durumunu gösteren elementi güncelliyoruz
+                            $("#connstatus").text(connection.state);
+                            // Belirli aralıklarla kategori sayısını sorgulamak için zamanlayıcı kullanıyoruz
+                            setInterval(() => {
+                                connection.invoke("SendCategoryCount");
+                            }, 1000);
+
+                        }).catch((err) => {
+                            // Hata durumunda konsola hata mesajını yazdırıyoruz
+                            console.log(err);
+                        });
+
+                        // Kategori sayısı alındığında bu fonksiyon çalışacak
+                        connection.on("ReceiveCategoryCount", (value) => {
+                            // Kategori sayısını gösteren elementi güncelliyoruz
+                            $("#categorycount").text(value);
+                        });
+                    });
+
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bağlantı durumu ve kategori sayısını gösteren bölüm -->
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <!-- Bağlantı durumu -->
+        <div class="alert-success">Bağlantının durumu: <strong id="connstatus"></strong> </div>
+        <!-- Kategori Sayısı -->
+        <div class="alert-success">Kategori Sayısı: <strong id="categorycount"></strong> </div>
+    </div>
+</div>

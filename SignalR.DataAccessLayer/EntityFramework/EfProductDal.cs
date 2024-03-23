@@ -24,5 +24,12 @@ namespace SignalR.DataAccessLayer.EntityFramework
             return values;
 
         }
-    }
+
+		public int ProductCount()
+		{
+            using var context = new SignalRContext(); // burada signalrcontext örnekledik
+            return context.Products.Count(); // context.Products tablosundaki kayıt sayısını döndürdük
+
+		}
+	}
 }
