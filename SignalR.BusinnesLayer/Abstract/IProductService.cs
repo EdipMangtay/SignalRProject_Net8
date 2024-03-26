@@ -11,6 +11,7 @@ namespace SignalR.BusinnesLayer.Abstract
     {
         List<Product> TGetProductsWithCategories();
         public int TProductCount(); // bu metot IProductService implemente edildiğinde kullanılacak
-
+        public int TProductCountByCategoryNameHamburger(); // bu metot IProductService implemente edildiğinde kullanılacak
+        public int TProductCountByCategoryNameDrink(); // bu metot IProductService implemente edildiğinde kullanılacak
     }
 }

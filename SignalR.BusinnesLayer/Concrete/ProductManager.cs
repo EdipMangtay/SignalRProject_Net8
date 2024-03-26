@@ -55,7 +55,18 @@ namespace SignalR.BusinessLayer.Concrete
 			return _productDal.ProductCount(); // IProductDal'daki ProductCount metotunu çağırdık bu sayede IProductDal implemente edildiğinde bu metot kullanılacak
 		}
 
-		public void TUpdate(Product entity)
+        public int TProductCountByCategoryNameDrink()
+        {
+            return _productDal.ProductCountByCategoryNameDrink();
+
+        }
+
+        public int TProductCountByCategoryNameHamburger()
+        {
+            return _productDal.ProductCountByCategoryNameHamburger();
+        }
+
+        public void TUpdate(Product entity)
         {
             _productDal.Update(entity);
 
