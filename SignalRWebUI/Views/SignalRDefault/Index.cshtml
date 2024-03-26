@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+    Layout = "~/Views/AdminLayout/Index.cshtml"; // AdminLayout ekledik
 
 }
 
@@ -11,6 +11,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     <div class="content">
         <div class="row">
             <!-- Kapalı div etiketini ekledik -->
@@ -20,20 +21,21 @@
                     <!-- Kapalı div etiketini ekledik -->
                     <script type="text/javascript">
                         $(document).ready(function () {
-                            var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7272/SignalRHub").build();
-                            $("#connstatus").text(connection.state);
+                        var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7272/SignalRHub").build(); <!--SignalRHub adresini ekledik-- >
+                            $("#connstatus").text(connection.state); <!-- Bağlantı durumunu kontrol etmek için -->
 
                             connection.start().then(() => {
-                                $("#connstatus").text(connection.state);
-                                connection.invoke("SendCategoryCount");
+                                $("#connstatus").text(connection.state);<!-- Bağlantı durumunu kontrol etmek için -->
+                                connection.invoke("SendCategoryCount");<!-- SendCategoryCount metodunu çağırdık -->
 
-                            }).catch((err) => {
+                            }).catch((err) => {<!-- Hata durumunda konsola yazdırmak için -->
                                 console.log(err);
-                                console.log(err);
+                                
                             });
 
 
-                            connection.on("ReceiveCategoryCount", (value) => {
+                            connection.on("ReceiveCategoryCount", (value) => 
+                            {
                                $("#categorycount").text(value);
                             });
                         });
@@ -47,6 +49,6 @@
 <div class="row">
     <div class="col-md-8 offset-2">
         <div class="alert-success">Bağlantının durumu: <strong id="connstatus"></strong> </div>
-        <div class="alert-success">Kategori Sayısı: <strong id="categorycount"></strong> </div>
+        <div class="alert-info">Kategori Sayısı: <strong id="categorycount"></strong> </div>
     </div>
 </div>

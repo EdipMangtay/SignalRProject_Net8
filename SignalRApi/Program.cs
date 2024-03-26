@@ -3,6 +3,7 @@ using SignalR.BusinnesLayer.Abstract;
 using SignalR.DataAccessLayer.Abstract;
 using SignalR.DataAccessLayer.Concrete;
 using SignalR.DataAccessLayer.EntityFramework;
+using SignalR.DataAccessLayer.Migrations;
 using SignalRApi.Hubs;
 using System.Reflection;
 

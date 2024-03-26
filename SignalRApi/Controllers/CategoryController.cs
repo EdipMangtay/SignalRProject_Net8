@@ -33,6 +33,18 @@ namespace SignalRApi.Controllers
 			return Ok(_categoryService.TCategoryCount()); // TCategoryCount() method is not implemented in ICategoryService interface.
 
 		}
+        [HttpGet("ActiveCategoryCount")]
+        public IActionResult ActiveCategoryCount()
+        {
+            return Ok(_categoryService.TActiveCategoryCount());
+        }
+
+        [HttpGet("PassiveCategoryCount")]
+        public IActionResult PassiveCategoryCount()
+        {
+            return Ok(_categoryService.TPassiveCategoryCount());
+        }
+
 
         [HttpPost]
         public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)

@@ -3,3 +3,13 @@
 --ProductCount
 --Aktif Category Sayısı
 -- Pasif Category Sayısı
+-- Entitye özgü methodlar yazarken  önce IProductDal a gidip gelecek methodu yaıyoruz
+-- Daha sonra EfProductDal a gidip Implement ediyoruz
+IPRoduct service e gidip methodu yazıyoruz
+-- Concreate tarafına implement interace = 
+daha sonra api katmanındaki contolller içerisinde geçmem gerekir
+
+
+
+aktif kategori sayısını getirelim
+

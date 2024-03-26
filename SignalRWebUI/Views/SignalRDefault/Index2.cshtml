@@ -36,7 +36,7 @@
                             // Bağlantı durumunu gösteren elementi güncelliyoruz
                             $("#connstatus").text(connection.state);
                             // Belirli aralıklarla kategori sayısını sorgulamak için zamanlayıcı kullanıyoruz
-                            setInterval(() => {
+                            setInterval(() => { // 1 saniyede bir sorgulama yapacak
                                 connection.invoke("SendCategoryCount");
                             }, 1000);
 

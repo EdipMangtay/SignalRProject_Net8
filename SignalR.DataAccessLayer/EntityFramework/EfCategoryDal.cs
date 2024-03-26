@@ -14,9 +14,22 @@ namespace SignalR.DataAccessLayer.EntityFramework
     {
         public EfCategoryDal(SignalRContext context) : base(context)
         {
+
         }
 
-		public int CategoryCount()
+        public int ActiveCategoryCount() 
+        {
+            using var context = new SignalRContext();
+            return context.Categories.Where(x => x.Status ==true).Count();
+        }
+        public int PassiveCategoryCount()
+        {
+            using var context = new SignalRContext();
+            return context.Categories.Where(x => x.Status == false).Count(); // context.Categories tablosundaki kayıtların durumu false olanları saydık
+        }
+      
+
+        public int CategoryCount()
 		{
 			using var context = new SignalRContext();// signalrcontext örnekledik
 			return context.Categories.Count();// context.Categories tablosundaki kayıt sayısını döndürdük
