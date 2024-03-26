@@ -16,3 +16,13 @@ aktif kategori sayısını getirelim
 -Ürün Adını Kategoriye göre getirelim 
 Selecm * from Products where CategoryId=1 bu biraz basit kalmakta  biz linq ile yapalım
 
+-- Ortalama fiyat getirmeye çalışalım
+en yüksek fiyatlı en düşük ve ortalama hamburger fiyatı getirleim 
+
+
+Toplam sipariş sayısı
+
+aktif sipariş tutarı
+kasasadaki toplam para
+bu gün ki kazanç 
+masa sayısı
