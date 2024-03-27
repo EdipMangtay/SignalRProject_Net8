@@ -1,4 +1,5 @@
-﻿using SignalR.BusinessLayer.Concrete;
+﻿using SignalR.BusinessLayer.Abstract;
+using SignalR.BusinessLayer.Concrete;
 using SignalR.BusinnesLayer.Abstract;
 using SignalR.DataAccessLayer.Abstract;
 using SignalR.DataAccessLayer.Concrete;
@@ -55,6 +56,10 @@ builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();//EfTestimonialD
 builder.Services.AddScoped<IProductService, ProductManager>();//ProductManager sınıfı IProductService arayüzüne bağlandı
 builder.Services.AddScoped<IProductDal, EfProductDal>();//EfProductDal sınıfı IProductDal arayüzüne bağlandı
 
+builder.Services.AddScoped<IOrderService, OrderManager>();//OrderManager sınıfı IOrderService arayüzüne bağlandı
+builder.Services.AddScoped<IOrderDal, EfOrderDal>();//EfOrderDal sınıfı IOrderDal arayüzüne bağlandı
+builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();//OrderManager sınıfı IOrderService arayüzüne bağlandı
+builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();//EfOrderDal sınıfı IOrderDal arayüzüne bağlandı
 
 
 
