@@ -14,6 +14,7 @@ namespace SignalR.DataAccessLayer.EntityFramework
     public class EfProductDal : GenericRepository<Product>, IProductDal
     {
         public EfProductDal(SignalRContext context) : base(context)
+            // burada EfProductDal sınıfını oluşturduk ve GenericRepository sınıfından kalıtım aldık
         {
         }
 
@@ -22,6 +23,7 @@ namespace SignalR.DataAccessLayer.EntityFramework
             var context = new SignalRContext();
             var values = context.Products.Include(x => x.Category).ToList();
             return values;
+            // burada context.Products tablosundaki kayıtları context.Categories tablosundaki kayıtlarla birleştirip döndürdük
 
         }
 
@@ -36,6 +38,7 @@ namespace SignalR.DataAccessLayer.EntityFramework
         {
             using var context = new SignalRContext();
             return context.Products.Where(x=> x.CategoryID==(context.Categories.Where(y=>y.CategoryName=="İçecek").Select(z=> z.Categoryid)).FirstOrDefault()).Count();
+            // burada içecek kategorisindeki ürün sayısını döndürdük
 
         }
 
@@ -43,6 +46,7 @@ namespace SignalR.DataAccessLayer.EntityFramework
         {
             using var context = new SignalRContext();
             return context.Products.Where(x => x.CategoryID == (context.Categories.Where(y => y.CategoryName == "Hamburger").Select(z => z.Categoryid)).FirstOrDefault()).Count();
+            // burada hamburger kategorisindeki ürün sayısını döndürdük
         }
 
         public decimal ProductPriceAvg()
@@ -50,6 +54,7 @@ namespace SignalR.DataAccessLayer.EntityFramework
            using var context = new SignalRContext();
             
             return context.Products.Average(x => x.Price);
+            // burada context.Products tablosundaki Price alanındaki değerlerin ortalamasını döndürdük
 
         }
 
@@ -57,18 +62,21 @@ namespace SignalR.DataAccessLayer.EntityFramework
         {
             using var context = new SignalRContext();
             return context.Products.Where(x => x.CategoryID == (context.Categories.Where(y => y.CategoryName == "Hamburger").Select(z => z.Categoryid)).FirstOrDefault()).Average(w => w.Price);
+            // burada hamburger kategorisindeki ürünlerin fiyatlarının ortalamasını döndürdük
         }
 
         public string ProductPriceByMax()
         {
             using var context = new SignalRContext();
            return context.Products.Where(x=>x.Price==(context.Products.Max(context=>context.Price))).Select(z=>z.ProductName).FirstOrDefault();
+            // burada context.Products tablosundaki Price alanındaki en yüksek değeri döndürdük
         }
 
         public string ProductPriceByMin()
         {
             using var context = new SignalRContext();
             return context.Products.Where(x => x.Price == (context.Products.Min(context => context.Price))).Select(z => z.ProductName).FirstOrDefault();
+            // burada context.Products tablosundaki Price alanındaki en düşük değeri döndürdük
         }
     }
 }

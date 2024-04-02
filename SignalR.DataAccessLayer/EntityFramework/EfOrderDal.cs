@@ -16,5 +16,26 @@ namespace SignalR.DataAccessLayer.EntityFramework
         {
 
         }
+
+        public int ActiveOrderCount()
+        {
+            using var context = new SignalRContext();
+            return context.Orders.Where(x => x.Description =="Müşteri Masada").Count();
+            //burası bana aktif sipariş sayısını döndürecek
+        }
+
+        public decimal LastOrderPrice()
+        {
+            using var context = new SignalRContext();
+            return context.Orders.OrderByDescending(x => x.OrderID).Take(1).Select(y=> y.TotalPrice).FirstOrDefault();
+            //burası bana son siparişin fiyatını döndürecek
+        }
+
+        public int TotalOrderCount()
+        {
+            using var context = new SignalRContext();
+            return context.Orders.Count(); 
+            //burası bana toplam sipariş sayısını döndürecek
+        }
     }
 }

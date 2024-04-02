@@ -10,5 +10,8 @@ namespace SignalR.BusinessLayer.Abstract
 {
     public interface IOrderService :IGenericService<Order>
     {
+        int TTotalOrderCount(); //burası bana toplam sipariş sayısını döndürecek
+        int TActiveOrderCount(); //burası bana aktif sipariş sayısını döndürecek
+        decimal TLastOrderPrice();
     }
 }
