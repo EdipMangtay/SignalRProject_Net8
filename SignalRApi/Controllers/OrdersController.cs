@@ -32,6 +32,12 @@ namespace SignalRApi.Controllers
             return Ok(_orderService.TLastOrderPrice());
             // burada OrderManager class'ındaki LastOrderPrice methodunu çağırdık
         }
+        [HttpGet("TodayTotalPrice")]
+        public IActionResult TodayTotalPrice()
+        {
+            return Ok(_orderService.TodayTotalPrice()); // burada OrderManager class'ındaki TodayTotalPrice methodunu çağırdık
+            // burada OrderManager class'ındaki TodayTotalPrice methodunu çağırdık
+        }
         
     }
 }

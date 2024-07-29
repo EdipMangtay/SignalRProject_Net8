@@ -61,7 +61,8 @@ builder.Services.AddScoped<IOrderDal, EfOrderDal>();//EfOrderDal sınıfı IOrde
 builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();//OrderManager sınıfı IOrderService arayüzüne bağlandı
 builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();//EfOrderDal sınıfı IOrderDal arayüzüne bağlandı
 
-
+builder.Services.AddScoped<IMoneyCaseService, MoneyCaseManager>(); //MoneyCaseManager sınıfı IMoneyCaseService arayüzüne bağlandı
+builder.Services.AddScoped<IMoneyCaseDal, EfMoneyCaseDal>(); //EfMoneyCaseDal sınıfı IMoneyCaseDal arayüzüne bağlandı
 
 
 

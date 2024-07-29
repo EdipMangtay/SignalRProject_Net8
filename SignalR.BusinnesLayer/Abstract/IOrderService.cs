@@ -13,5 +13,6 @@ namespace SignalR.BusinessLayer.Abstract
         int TTotalOrderCount(); //burası bana toplam sipariş sayısını döndürecek
         int TActiveOrderCount(); //burası bana aktif sipariş sayısını döndürecek
         decimal TLastOrderPrice();
+         decimal TodayTotalPrice();
     }
 }

@@ -49,6 +49,11 @@ namespace SignalR.BusinessLayer.Concrete
             //burası bana son siparişin fiyatını döndürecek
         }
 
+        public decimal TodayTotalPrice()
+        {
+            return _orderDal.TodayTotalPrice();
+        }
+
         public int TTotalOrderCount()
         {
             return _orderDal.TotalOrderCount();
