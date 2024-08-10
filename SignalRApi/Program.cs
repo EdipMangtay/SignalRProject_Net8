@@ -67,6 +67,9 @@ builder.Services.AddScoped<IMoneyCaseDal, EfMoneyCaseDal>(); //EfMoneyCaseDal s�
 builder.Services.AddScoped<IMenutableService, MenuTableManager>();
 builder.Services.AddScoped<IMenuTableDal, EfMenuTableDal>();
 
+builder.Services.AddScoped<ISliderService, SliderManager>();//SliderManager sınıfı ISliderService arayüzüne bağlandı
+builder.Services.AddScoped<ISliderDal, EfSliderDal>();//EfSliderDal sınıfı ISliderDal arayüzüne bağlandı
+
 
 
 
