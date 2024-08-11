@@ -71,6 +71,8 @@ builder.Services.AddScoped<ISliderService, SliderManager>();//SliderManager sın
 builder.Services.AddScoped<ISliderDal, EfSliderDal>();//EfSliderDal sınıfı ISliderDal arayüzüne bağlandı
 
 
+builder.Services.AddScoped<IBasketService,BasketManager>();//SliderManager sınıfı ISliderService arayüzüne bağlandı
+builder.Services.AddScoped<IBasketDal, EfBasketDal>();//EfSliderDal sınıfı ISliderDal arayüzüne bağlandı
 
 
 
