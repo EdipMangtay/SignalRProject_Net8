@@ -7,6 +7,8 @@ using SignalR.DataAccessLayer.EntityFramework;
 using SignalR.DataAccessLayer.Migrations;
 using SignalRApi.Hubs;
 using System.Reflection;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -74,6 +76,8 @@ builder.Services.AddScoped<ISliderDal, EfSliderDal>();//EfSliderDal sınıfı IS
 builder.Services.AddScoped<IBasketService,BasketManager>();//SliderManager sınıfı ISliderService arayüzüne bağlandı
 builder.Services.AddScoped<IBasketDal, EfBasketDal>();//EfSliderDal sınıfı ISliderDal arayüzüne bağlandı
 
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 
 

@@ -20,7 +20,7 @@ namespace SignalR.BusinessLayer.Concrete
 
         public void TAdd(Basket entity)
         {
-            throw new NotImplementedException();
+            _basketdal.Add(entity);         
         }
 
         public void TDelete(Basket entity)
