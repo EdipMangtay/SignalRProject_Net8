@@ -145,15 +145,15 @@
         {
             var id = value;
             $.ajax({
-                type: "POST", // bruası 
-                URL: "/Menu/AddBasket/" + id,
-                data: {item:id},
-                contentType :'jyson',
-                success : function(){
-                    swal("Seçilen Ürün Id! " + id, "Seçiminizi Yaptınız!", "success" );
+            type: "POST",
+            url: "/Menu/AddBasket/" + id,  // 'url' küçük harflerle olmalı
+            data: JSON.stringify({ item: id }),  // Veriyi JSON formatında gönderelim
+            contentType: 'application/json',  // Doğru content type
+            success: function () {
+                swal("Seçilen Ürün Id! " + id, "Seçiminizi Yaptınız!", "success");
+        }
+        });
 
-                }
-            });
         }
 
 
