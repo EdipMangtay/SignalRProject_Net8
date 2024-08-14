@@ -15,19 +15,21 @@ namespace SignalRApi.Hubs
 		private readonly IProductService _productService; // Ürün servisi oluşturuldu
 		private readonly IOrderService _orderService; // Sipariş servisi oluşturuldu
 		private readonly IMoneyCaseService _moneyCaseService; // Kasa servisi oluşturuldu
-		private readonly IMenutableService _menutableService;
+		private readonly IMenutableService _menutableService; // Menü tablosu servisi oluşturuldu
+		private readonly IBookingService _bookingService;
 
 
-		public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenutableService menutableService)
-		{
-			_categoryService = categoryService;
-			_productService = productService;
-			_orderService = orderService;
-			_moneyCaseService = moneyCaseService;
-			_menutableService = menutableService;
-		}
+        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenutableService menutableService, IBookingService bookingService)
+        {
+            _categoryService = categoryService;
+            _productService = productService;
+            _orderService = orderService;
+            _moneyCaseService = moneyCaseService;
+            _menutableService = menutableService;
+            _bookingService = bookingService;
+        }
 
-		public async Task SendStatistic() //Client tarafından çağrılacak 
+        public async Task SendStatistic() //Client tarafından çağrılacak 
 		{
 			var value = _categoryService.TCategoryCount(); // Kategorilerin sayısı alındı
 			await Clients.All.SendAsync("ReceiveCategoryCount", value); //Tüm clientlara gönderilecek
@@ -86,6 +88,11 @@ namespace SignalRApi.Hubs
 			var value3 = _menutableService.TMenuTableCount();
 			await Clients.All.SendAsync("ReceiveMenuTableCount", value3);
 		}
+		public async Task GetBookingList()
+		{
+			var values = _bookingService.TGetListAll();
+			await Clients.All.SendAsync("ReceiveBookingList", values);
+        }
 
 
 	}
