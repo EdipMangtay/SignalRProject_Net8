@@ -1,6 +1,7 @@
 ﻿@model List<ResultProductDto>
 @{
     Layout = null;
+    
 }
 
 <!DOCTYPE html>
@@ -144,7 +145,8 @@
         {
             var id = value;
             $.ajax({
-                type: "POST",
+                type: "POST", // bruası 
+                URL: "/Menu/AddBasket/" + id,
                 data: {item:id},
                 contentType :'jyson',
                 success : function(){
@@ -153,7 +155,6 @@
                 }
             });
         }
-
 
 
     </script>
