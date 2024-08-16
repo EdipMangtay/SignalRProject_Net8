@@ -99,6 +99,9 @@ namespace SignalRApi.Hubs
 		{
 			var value = _notificationService.TNotificationCountByFalse();
             await Clients.All.SendAsync("ReceiveNotificationCountByFalse", value);
+
+			var notificationListByFalse = _notificationService.TGetAllNotificationByFalse();
+            await Clients.All.SendAsync("ReceiveNotificationListByFalse", notificationListByFalse);
         }
 
 

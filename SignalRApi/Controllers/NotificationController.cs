@@ -25,6 +25,11 @@ namespace SignalRApi.Controllers
         {
             return Ok(_notificationService.TNotificationCountByFalse());
         }
+        [HttpGet("GetAllNotificationByFalse")]
+        public IActionResult GetAllNotificationByFalse()
+        {
+            return Ok(_notificationService.TGetAllNotificationByFalse()); // return ok ile notificationları döndürüyoruz
+        }
 
     }
 }

@@ -11,5 +11,6 @@ namespace SignalR.BusinessLayer.Abstract
     public interface INotificationService :IGenericService<Notification>
     {
         int TNotificationCountByFalse();
+        List<Notification> TGetAllNotificationByFalse();
     }
 }
