@@ -12,6 +12,12 @@ namespace SignalR.BusinessLayer.Concrete
     public class NotificationManager : INotificationService
     {
         private readonly INotificationDal _notificationDal;
+
+        public NotificationManager(INotificationDal notificationDal)
+        {
+            _notificationDal = notificationDal;
+        }
+
         public void TAdd(Notification entity)
         {
             _notificationDal.Add(entity);
@@ -29,12 +35,12 @@ namespace SignalR.BusinessLayer.Concrete
 
         public List<Notification> TGetListAll()
         {
-            if (_notificationDal == null)
-            {
-                throw new InvalidOperationException("Notification Data Access Layer is not initialized.");
-            }
-
             return _notificationDal.GetListAll();
+        }
+
+        public int TNotificationCountByFalse()
+        {
+            return _notificationDal.NotificationCountByFalse();
         }
 
         public void TUpdate(Notification entity)
