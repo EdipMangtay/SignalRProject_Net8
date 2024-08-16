@@ -76,8 +76,15 @@ builder.Services.AddScoped<ISliderDal, EfSliderDal>();//EfSliderDal sınıfı IS
 builder.Services.AddScoped<IBasketService,BasketManager>();//SliderManager sınıfı ISliderService arayüzüne bağlandı
 builder.Services.AddScoped<IBasketDal, EfBasketDal>();//EfSliderDal sınıfı ISliderDal arayüzüne bağlandı
 
+builder.Services.AddScoped<INotificationService, NotificationManager>();
+builder.Services.AddScoped<INotificationDal, EfNotificationDal>();
+
+
 builder.Services.AddControllersWithViews()
     .AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+
+
 
 
 
