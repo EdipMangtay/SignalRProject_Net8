@@ -6,46 +6,48 @@
 }
 
 <div class="content">
-<div class="container-fluid">
-	<h4 class="page-title">Bildirim işlemleri</h4>
-	<div class="row">
-		<div class="col-md-6">
-			<form method="post">
-				<div class="card">
-					<input type="hidden" asp-for="NotificationID" />
-					<div class="card-header">
-						<div class="card-title">Yeni Bildirim Girişi</div>
-					</div>
-					<div class="card-body">
-						<div class="form-group">
-							<label for="categoryname">Bildirim Türü</label>
-							<input type="text" class="form-control" asp-for="Type" id="CategoryName" placeholder="Kategori Adı">
+    <div class="container-fluid">
+        <h4 class="page-title">Bildirim Güncelleme</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Form start -->
+                <form asp-action="UpdateNotification" method="post">
+                    <div class="card">
+                        <!-- Hidden field to pass the NotificationID -->
+                        <input type="hidden" asp-for="NotificationID" />
 
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="form-group">
-							<label for="categoryname">Bildirim Icon</label>
-							<input type="text" class="form-control" asp-for="Icon" id="CategoryName" placeholder="Kategori Adı">
+                        <div class="card-header">
+                            <div class="card-title">Bildirim Güncelleme Formu</div>
+                        </div>
 
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="form-group">
-							<label for="categoryname">Açıklama</label>
-							<input type="text" class="form-control" asp-for="Description" id="CategoryName" placeholder="Kategori Adı">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="notificationType">Bildirim Türü</label>
+                                <input type="text" class="form-control" asp-for="Type" id="notificationType" placeholder="Bildirim Türü">
+                            </div>
+                        </div>
 
-						</div>
-					</div>
-					<div class="card-action">
-						<button class="btn btn-primary">Bildirimi Ekle</button>
-					</div>
-				</div>
-			</form>
-		</div>
-		<a href=" /Category/CreateCategory" class="btn btn-outline-primary">Yeni Kategori Girişi </a>
-	</div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="notificationIcon">Bildirim Icon</label>
+                                <input type="text" class="form-control" asp-for="Icon" id="notificationIcon" placeholder="Bildirim Icon">
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="notificationDescription">Açıklama</label>
+                                <input type="text" class="form-control" asp-for="Description" id="notificationDescription" placeholder="Açıklama">
+                            </div>
+                        </div>
+
+                        <div class="card-action">
+                            <button type="submit" class="btn btn-primary">Bildirimi Güncelle</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- Form end -->
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-
-
