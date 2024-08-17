@@ -61,36 +61,34 @@ namespace SignalRWebUI.Controllers
             }
             return View();
         }
-
-        // Update Notification (GET and POST)
         [HttpGet]
         public async Task<IActionResult> UpdateNotification(int id)
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync($"https://localhost:7272/api/Notification/{id}");
+
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<UpdateNotificationDto>(jsonData);
-                return View(values);
+                return View(values); // Doldurulmuş DTO'yu view'e gönderiyoruz
             }
+
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateNotification(UpdateNotificationDto updateNotification)
+        public async Task<IActionResult> UpdateNotification(UpdateNotificationDto updateNotificationDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateNotification);
+            var jsonData = JsonConvert.SerializeObject(updateNotificationDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-            // Ensure that the NotificationID is passed in the URL for the PUT request
-            var responseMessage = await client.PutAsync($"https://localhost:7272/api/Notification/{updateNotification.NotificationID}", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7272/api/Notification/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-            return View(updateNotification);
+            return View();
         }
     }
 }
