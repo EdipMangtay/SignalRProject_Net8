@@ -1,0 +1,51 @@
+﻿@model UpdateNotificationDto
+
+@{
+    ViewData["Title"] = "UpdateNotification";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+<div class="container-fluid">
+	<h4 class="page-title">Bildirim işlemleri</h4>
+	<div class="row">
+		<div class="col-md-6">
+			<form method="post">
+				<div class="card">
+					<input type="hidden" asp-for="NotificationID" />
+					<div class="card-header">
+						<div class="card-title">Yeni Bildirim Girişi</div>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label for="categoryname">Bildirim Türü</label>
+							<input type="text" class="form-control" asp-for="Type" id="CategoryName" placeholder="Kategori Adı">
+
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label for="categoryname">Bildirim Icon</label>
+							<input type="text" class="form-control" asp-for="Icon" id="CategoryName" placeholder="Kategori Adı">
+
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="form-group">
+							<label for="categoryname">Açıklama</label>
+							<input type="text" class="form-control" asp-for="Description" id="CategoryName" placeholder="Kategori Adı">
+
+						</div>
+					</div>
+					<div class="card-action">
+						<button class="btn btn-primary">Bildirimi Ekle</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<a href=" /Category/CreateCategory" class="btn btn-outline-primary">Yeni Kategori Girişi </a>
+	</div>
+</div>
+</div>
+
+
