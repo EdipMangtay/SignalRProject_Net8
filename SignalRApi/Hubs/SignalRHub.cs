@@ -18,9 +18,10 @@ namespace SignalRApi.Hubs
 		private readonly IMenutableService _menutableService; // Menü tablosu servisi oluşturuldu
 		private readonly IBookingService _bookingService;
 		private readonly INotificationService _notificationService;
+		
 
 
-        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenutableService menutableService, IBookingService bookingService, INotificationService notificationService)
+		public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenutableService menutableService, IBookingService bookingService, INotificationService notificationService)
         {
             _categoryService = categoryService;
             _productService = productService;
@@ -103,6 +104,12 @@ namespace SignalRApi.Hubs
 			var notificationListByFalse = _notificationService.TGetAllNotificationByFalse();
             await Clients.All.SendAsync("ReceiveNotificationListByFalse", notificationListByFalse);
         }
+
+		public async Task GetMenuTableStatus()
+		{
+			var values = _menutableService.TGetListAll();
+			await Clients.All.SendAsync("ReceiveMenuTableStatus", values);
+		}
 
 
 	}

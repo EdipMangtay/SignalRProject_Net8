@@ -5,10 +5,10 @@ using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
-	public class MenuTablesControlller : Controller
+	public class MenuTablesController : Controller
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
-		public MenuTablesControlller(IHttpClientFactory httpClientFactory)
+		public MenuTablesController(IHttpClientFactory httpClientFactory)
 		{
 			_httpClientFactory = httpClientFactory;
 		}
@@ -32,6 +32,7 @@ namespace SignalRWebUI.Controllers
 		[HttpPost]
 		public async Task<IActionResult> CreateMenuTable(CreateMenuTableDto createMenuTableDto)
 		{
+			createMenuTableDto.Status = false;
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(createMenuTableDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
@@ -42,7 +43,7 @@ namespace SignalRWebUI.Controllers
 			}
 			return View();
 		}
-		public async Task<IActionResult> DeleteMenuTablet(int id)
+		public async Task<IActionResult> DeleteMenuTable(int id)
 		{
 			var client = _httpClientFactory.CreateClient();
 			var responseMessage = await client.DeleteAsync($"https://localhost:7272/api/MenuTables/{id}");
@@ -66,7 +67,7 @@ namespace SignalRWebUI.Controllers
 			return View();
 		}
 		[HttpPost]
-		public async Task<IActionResult> UpdateAbout(UpdateMenuTableDto updateMenuTableDto)
+		public async Task<IActionResult> UpdateMenuTable(UpdateMenuTableDto updateMenuTableDto)
 		{
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(updateMenuTableDto);
@@ -78,5 +79,20 @@ namespace SignalRWebUI.Controllers
 			}
 			return View();
 		}
+
+		[HttpGet]
+		public async Task<IActionResult> TableListByStatus()
+		{
+			var client = _httpClientFactory.CreateClient();
+			var responseMessage = await client.GetAsync("https://localhost:7272/api/MenuTables");
+			if (responseMessage.IsSuccessStatusCode)
+			{
+				var jsonData = await responseMessage.Content.ReadAsStringAsync();
+				var values = JsonConvert.DeserializeObject<List<ResultMenuTableDto>>(jsonData);
+				return View(values);
+			}
+			return View();
+		}
+
 	}
 }
