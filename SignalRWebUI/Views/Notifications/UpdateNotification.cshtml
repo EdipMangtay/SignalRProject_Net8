@@ -14,7 +14,7 @@
                 <form asp-action="UpdateNotification" method="post">
                     <div class="card">
                         <!-- Hidden field to pass the NotificationID -->
-                        <input type="hidden" asp-for="NotificationID" id="notificationID" name="notificationID" />
+                        <input type="hidden" asp-for="NotificationID" />
 
                         <div class="card-header">
                             <div class="card-title">Bildirim Güncelleme Formu</div>
@@ -22,29 +22,33 @@
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="notificationType">Bildirim Türü</label>
-                                <input type="text" class="form-control" asp-for="Type" id="notificationType" name="notificationType" placeholder="Bildirim Türü">
+                                <label asp-for="Type">Bildirim Türü</label>
+                                <input type="text" class="form-control" asp-for="Type" placeholder="Bildirim Türü">
+                                <span asp-validation-for="Type" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="notificationIcon">Bildirim Icon</label>
-                                <input type="text" class="form-control" asp-for="Icon" id="notificationIcon" name="notificationIcon" placeholder="Bildirim Icon">
+                                <label asp-for="Icon">Bildirim Icon</label>
+                                <input type="text" class="form-control" asp-for="Icon" placeholder="Bildirim Icon">
+                                <span asp-validation-for="Icon" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="notificationDescription">Açıklama</label>
-                                <input type="text" class="form-control" asp-for="Description" id="notificationDescription" name="notificationDescription" placeholder="Açıklama">
+                                <label asp-for="Description">Açıklama</label>
+                                <input type="text" class="form-control" asp-for="Description" placeholder="Açıklama">
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="notificationStatus">Durum</label>
-                                <input type="checkbox" asp-for="Status" id="notificationStatus" name="notificationStatus">
+                                <label asp-for="Status">Durum</label>
+                                <input type="checkbox" asp-for="Status">
+                                <span asp-validation-for="Status" class="text-danger"></span>
                             </div>
                         </div>
 

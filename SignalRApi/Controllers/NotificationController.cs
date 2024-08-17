@@ -8,7 +8,7 @@ namespace SignalRApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NotificationController : ControllerBase 
+    public class NotificationController : ControllerBase
     {
         private readonly INotificationService _notificationService;
 
@@ -22,57 +22,88 @@ namespace SignalRApi.Controllers
         {
             return Ok(_notificationService.TGetListAll());
         }
+
         [HttpGet("NotificationCountByFalse")]
         public IActionResult NotificationCountByFalse()
         {
             return Ok(_notificationService.TNotificationCountByFalse());
         }
+
         [HttpGet("GetAllNotificationByFalse")]
         public IActionResult GetAllNotificationByFalse()
         {
-            return Ok(_notificationService.TGetAllNotificationByFalse()); // return ok ile notificationları döndürüyoruz
+            return Ok(_notificationService.TGetAllNotificationByFalse()); // false statüsünde olan notificationları döndürür
         }
+
         [HttpPost]
         public IActionResult CreateNotification(CreataNotificationDto creataNotificationDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             Notification notification = new Notification
             {
                 Type = creataNotificationDto.Type,
                 Icon = creataNotificationDto.Icon,
                 Description = creataNotificationDto.Description,
-                Date = Convert.ToDateTime(DateTime.Now.ToShortDateString()),
+                Date = DateTime.Now, // Sadece gün ve saat bilgisi
                 Status = false
             };
+
             _notificationService.TAdd(notification);
             return Ok("Ekleme işlemi başarılı");
         }
-        [HttpDelete]
-       public IActionResult DeleteNotification(int id)
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteNotification(int id)
         {
             var value = _notificationService.TGetByID(id);
+            if (value == null)
+            {
+                return NotFound("Silinecek bildirim bulunamadı.");
+            }
+
             _notificationService.TDelete(value);
             return Ok("Silme işlemi başarılı");
         }
+
         [HttpGet("{id}")]
         public IActionResult GetNotification(int id)
         {
-            return Ok(_notificationService.TGetByID(id));
-        }
-        [HttpPut]
-        public IActionResult UpdateNotification(UpdateNotificationDto updateNotificationDto)
-        {
-            Notification notification = new Notification
+            var notification = _notificationService.TGetByID(id);
+            if (notification == null)
             {
-                NotificationID = updateNotificationDto.NotificationID,
-                Type = updateNotificationDto.Type,
-                Icon = updateNotificationDto.Icon,
-                Description = updateNotificationDto.Description,
-                Date = Convert.ToDateTime(DateTime.Now.ToShortDateString()),
-                Status = updateNotificationDto.Status,
-            };
-            _notificationService.TUpdate(notification);
-            return Ok("Güncelleme işlemi başarılı");
+                return NotFound("Bildirim bulunamadı.");
+            }
+
+            return Ok(notification);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult UpdateNotification(int id, UpdateNotificationDto updateNotificationDto)
+        {
+            if (id != updateNotificationDto.NotificationID)
+            {
+                return BadRequest("Bildirim ID uyuşmazlığı.");
+            }
+
+            var existingNotification = _notificationService.TGetByID(id);
+            if (existingNotification == null)
+            {
+                return NotFound("Güncellenecek bildirim bulunamadı.");
+            }
+
+            // Mevcut bildirim güncelleniyor
+            existingNotification.Type = updateNotificationDto.Type;
+            existingNotification.Icon = updateNotificationDto.Icon;
+            existingNotification.Description = updateNotificationDto.Description;
+            existingNotification.Date = DateTime.Now; // Güncellenme tarihi
+            existingNotification.Status = updateNotificationDto.Status;
+
+            _notificationService.TUpdate(existingNotification);
+            return Ok("Güncelleme işlemi başarılı");
+        }
     }
 }

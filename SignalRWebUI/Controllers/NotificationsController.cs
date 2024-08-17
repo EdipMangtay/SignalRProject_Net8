@@ -61,6 +61,8 @@ namespace SignalRWebUI.Controllers
             }
             return View();
         }
+
+        // Update Notification (GET)
         [HttpGet]
         public async Task<IActionResult> UpdateNotification(int id)
         {
@@ -71,24 +73,36 @@ namespace SignalRWebUI.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<UpdateNotificationDto>(jsonData);
-                return View(values); // Doldurulmuş DTO'yu view'e gönderiyoruz
+                return View(values); // Formu doldurup geri gönderiyoruz
             }
 
             return View();
         }
 
+        // Update Notification (POST)
         [HttpPost]
         public async Task<IActionResult> UpdateNotification(UpdateNotificationDto updateNotificationDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(updateNotificationDto); // Model hatalıysa formu tekrar gösteriyoruz
+            }
+
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateNotificationDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7272/api/Notification/", stringContent);
+
+            // ID'yi URL'de geçiriyoruz
+            var responseMessage = await client.PutAsync($"https://localhost:7272/api/Notification/{updateNotificationDto.NotificationID}", stringContent);
+
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index"); // Başarılıysa yönlendiriyoruz
             }
-            return View();
+
+            // Hata durumunda hata mesajı ile formu tekrar gösteriyoruz
+            ModelState.AddModelError(string.Empty, "Güncelleme işlemi başarısız oldu.");
+            return View(updateNotificationDto);
         }
     }
 }
