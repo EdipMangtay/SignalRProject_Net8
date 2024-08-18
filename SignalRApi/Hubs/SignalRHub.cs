@@ -4,6 +4,8 @@ using SignalR.BusinessLayer.Abstract;
 using SignalR.BusinnesLayer.Abstract;
 using SignalR.DataAccessLayer.Abstract;
 using SignalR.DataAccessLayer.Concrete;
+using System.Configuration;
+using System.Reflection.Metadata.Ecma335;
 
 namespace SignalRApi.Hubs
 {// hub burada bir sunucu olacak
@@ -31,6 +33,8 @@ namespace SignalRApi.Hubs
             _bookingService = bookingService;
             _notificationService = notificationService;
         }
+
+		public int ClientCount { get; set; } = 0;
 
         public async Task SendStatistic() //Client tarafından çağrılacak 
 		{
@@ -116,6 +120,17 @@ namespace SignalRApi.Hubs
 			await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
-
-	}
+        public override async Task OnConnectedAsync()
+        {
+			ClientCount++;
+			await Clients.All.SendAsync("ReceiveClientCount", ClientCount); // burası bir tetikleyici
+            await base.OnConnectedAsync();
+        }
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            ClientCount--;
+            await Clients.All.SendAsync("ReceiveClientCount", ClientCount);
+            await base.OnDisconnectedAsync(exception);
+        }
+    }
 }
