@@ -83,7 +83,8 @@ namespace SignalRApi.Controllers
                 Price = y.Price,
                 Productid = y.Productid,
                 ProductName = y.ProductName,
-                CategoryName = y.Category.CategoryName
+                CategoryName = y.Category.CategoryName,
+                ProductStatus=y.ProductStatus
             });
             return  Ok(values.ToList());
 

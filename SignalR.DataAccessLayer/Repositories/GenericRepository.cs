@@ -1,4 +1,5 @@
-﻿using SignalR.DataAccessLayer.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using SignalR.DataAccessLayer.Abstract;
 using SignalR.DataAccessLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace SignalR.DataAccessLayer.Repositories
         public void Delete(T entity)
         {
             _context.Remove(entity);
-            _context.SaveChanges();
+			_context.SaveChanges();
         }
 
         public T GetByID(int id)
