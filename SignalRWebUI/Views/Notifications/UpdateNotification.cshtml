@@ -7,57 +7,38 @@
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Bildirim Güncelleme</h4>
+        <h4 class="page-title">Bildirim İşlemleri</h4>
         <div class="row">
-            <div class="col-md-6">
-                <!-- Form start -->
-                <form asp-action="UpdateNotification" method="post">
+            <div class="col-md-12">
+                <form method="post">
                     <div class="card">
-                        <!-- Hidden field to pass the NotificationID -->
                         <input type="hidden" asp-for="NotificationID" />
-
                         <div class="card-header">
-                            <div class="card-title">Bildirim Güncelleme Formu</div>
+                            <div class="card-title">Yeni Bildirim Girişi</div>
                         </div>
-
                         <div class="card-body">
                             <div class="form-group">
-                                <label asp-for="Type">Bildirim Türü</label>
-                                <input type="text" class="form-control" asp-for="Type" placeholder="Bildirim Türü">
-                                <span asp-validation-for="Type" class="text-danger"></span>
+                                <label for="categoryname">Bildirim Türü</label>
+                                <input type="text" class="form-control" asp-for="Type" id="categoryname">
                             </div>
                         </div>
-
                         <div class="card-body">
                             <div class="form-group">
-                                <label asp-for="Icon">Bildirim Icon</label>
-                                <input type="text" class="form-control" asp-for="Icon" placeholder="Bildirim Icon">
-                                <span asp-validation-for="Icon" class="text-danger"></span>
+                                <label for="categoryname">Bildirim İkonu</label>
+                                <input type="text" class="form-control" asp-for="Icon" id="categoryname">
                             </div>
                         </div>
-
                         <div class="card-body">
                             <div class="form-group">
-                                <label asp-for="Description">Açıklama</label>
-                                <input type="text" class="form-control" asp-for="Description" placeholder="Açıklama">
-                                <span asp-validation-for="Description" class="text-danger"></span>
+                                <label for="categoryname">Açıklama</label>
+                                <input type="text" class="form-control" asp-for="Description" id="categoryname">
                             </div>
                         </div>
-
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label asp-for="Status">Durum</label>
-                                <input type="checkbox" asp-for="Status">
-                                <span asp-validation-for="Status" class="text-danger"></span>
-                            </div>
-                        </div>
-
                         <div class="card-action">
-                            <button type="submit" class="btn btn-primary">Bildirimi Güncelle</button>
+                            <button class="btn btn-success">Bildirimi Güncelle</button>
                         </div>
                     </div>
                 </form>
-                <!-- Form end -->
             </div>
         </div>
     </div>

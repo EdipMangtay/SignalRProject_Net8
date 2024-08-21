@@ -83,18 +83,24 @@ namespace SignalRApi.Controllers
             return Ok("indirim Güncellendi");
 
         }
-		[HttpPut("ChangeStatusToTrue/{id}")]
+		[HttpGet("ChangeStatusToTrue/{id}")]
 		public IActionResult ChangeStatusToTrue(int id)
 		{
 			_discountService.TChangeStatusToTrue(id);
-			return Ok("İndirim Durumu Güncellendi (True)");
+			return Ok("Ürün İndirimi Aktif Hale Getirildi");
 		}
 
-		[HttpPut("ChangeStatusToFalse/{id}")]
+		[HttpGet("ChangeStatusToFalse/{id}")]
 		public IActionResult ChangeStatusToFalse(int id)
 		{
 			_discountService.TChangeStatusToFalse(id);
-			return Ok("İndirim Durumu Güncellendi (False)");
+			return Ok("Ürün İndirimi Pasif Hale Getirildi");
 		}
+
+		//[HttpGet("GetListByStatusTrue")]
+		//public IActionResult GetListByStatusTrue()
+		//{
+		//	return Ok(_discountService.TGetListByStatusTrue());
+		//}
 	}
 }

@@ -55,7 +55,9 @@ namespace SignalR.BusinessLayer.Concrete
 
         }
 
-        public void TUpdate(Discount entity)
+		
+
+		public void TUpdate(Discount entity)
         {
             _discountDal.Update(entity);
 

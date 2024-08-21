@@ -8,24 +8,15 @@
 
 @await Component.InvokeAsync("_UILayoutHeadComponentPartial")
 
-
 <body class="sub_page">
 
-    <div class="hero_area">
-        <div class="bg-box">
-            <img src="images/hero-bg.jpg" alt="">
-        </div>
-        <!-- header section strats -->
-        @await Component.InvokeAsync("_MenuNavbarComponentPartial")
-        <!-- end header section -->
-    </div>
+    @await Component.InvokeAsync("_MenuNavbarComponentPartial")
 
-    <!-- book section -->
     <section class="book_section layout_padding">
         <div class="container">
             <div class="heading_container">
                 <h2>
-                    Rezervasyon Oluştur
+                    Rezervasyon Oluşturun
                 </h2>
             </div>
             <div class="row">
@@ -36,15 +27,15 @@
                                 <input type="text" class="form-control" placeholder="Adınız Soyadınız" asp-for="Name" />
                             </div>
                             <div>
-                                <input type="text" class="form-control" placeholder="Telefon Numaranız"  asp-for="Phone"/>
+                                <input type="text" class="form-control" placeholder="Telefon Numaranız" asp-for="Phone" />
                             </div>
                             <div>
                                 <input type="email" class="form-control" placeholder="Mail Adresiniz" asp-for="Mail" />
                             </div>
                             <div>
-                                <select asp-for = "PersonCount" class="form-control nice-select wide">
+                                <select asp-for="PersonCount" class="form-control nice-select wide">
                                     <option value="" disabled selected>
-                                        Kişi Sayısı ?
+                                        Kaç Kişisiziniz?
                                     </option>
                                     <option value="1">
                                         1
@@ -85,11 +76,12 @@
             </div>
         </div>
     </section>
-   
+
     @await Component.InvokeAsync("_UILayoutFooterComponentPartial")
+
     @await Component.InvokeAsync("_UILayoutScriptComponentPartial")
 
-
 </body>
+
 </html>
 

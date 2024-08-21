@@ -111,4 +111,14 @@
     <ProjectReference Include="..\SignalR.EntitLayer\SignalR.EntityLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Shared\Components\_UILayoutSocialMediaComponentPartial\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="QRCoder">
+      <HintPath>..\..\..\..\QRCoder.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
