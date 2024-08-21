@@ -16,5 +16,7 @@ namespace SignalR.DtoLayer.DiscountDto
         public string Description { get; set; }
 
         public string ImageUrl { get; set; }
+        public bool Status { get; set; }
+
     }
 }

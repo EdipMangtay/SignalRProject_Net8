@@ -13,7 +13,7 @@ namespace SignalRWebUI.ViewModels.Dtos.BookingDtos
         public string Phone { get; set; }
         public string Mail { get; set; }
 
-        public int PersonCount { get; set; }
+		public int PersonCount { get; set; }
         public DateTime Date { get; set; }
     }
 }

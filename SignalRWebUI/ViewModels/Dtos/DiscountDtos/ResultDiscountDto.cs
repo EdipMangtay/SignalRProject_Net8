@@ -15,6 +15,7 @@ namespace SignalRWebUI.ViewModels.Dtos.DiscountDtos
         public string Amount { get; set; }
 
         public string Description { get; set; }
+        public bool Status { get; set; }
 
         public string ImageUrl { get; set; }
     }
